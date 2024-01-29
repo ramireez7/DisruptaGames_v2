@@ -1,0 +1,165 @@
+{% extends 'base.html.twig' %}
+{% block principal %}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-content">
+					<!-- ***** Popular Posts Start ***** -->
+					<div class="row">
+						<div class="most popular">
+							<div class="col-lg-12" style="margin: 0px">
+								<div class="featured-games header-text">
+									<div class="heading-section">
+										<h4>
+											<em style="color:whitesmoke">Most Popular</em>
+											Posts</h4>
+									</div>
+								<div class="row">
+								{# usort($posts, function ($a, $b) {
+								return $b->getNumLikes() - $a->getNumLikes();
+								});
+								$postsDestacados = array_slice($posts, 0, 4); #}
+								{% for post in postsDestacados %}
+								<div class="col-lg-3 col-sm-6">
+									<div class="item">
+										<div class="like-count" style="position: relative; padding: 5px; border-radius: 20px; color: whitesmoke;">
+											<p>
+												<i class="fa fa-thumbs-up"></i>
+												<?= $post->getNumLikes() ?>
+																			Likes
+											</p>
+										</div>
+										<div class="thumb">
+											<a href="/posts/<?= $post->getId() ?>"><img style="min-height: 155px; max-height: 155px" src=" <?= $post->getUrlImagenPost() ?>" alt="" style="cursor: pointer; min-height: 150px"></a>
+											<div class="hover-effect">
+												<div class="content">
+													<div class="main-button" style="font-size: 1px">
+														<a href="/games">
+															<i class="fa fa-gamepad"></i>
+															<?= $postsRepository->getJuego($post)->getNombre() ?>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="down-content">
+											<div class="avatar" style="max-width: 30px; margin-top: 15px">
+												<img src=" /public/images/imagenes_perfil/<?= $postsRepository->getCreador($post)->getProfileImage() ?>" alt="" style="max-width: 46px; border-radius: 50%; float: left; cursor: pointer">
+											</div>
+											<p style="margin-top: 15px; margin-left: 37px; cursor: pointer">
+												<?= $postsRepository->getCreador($post)->getUsername() ?>
+												<i class="fa fa-calendar" aria-hidden="true" style="margin-left: 15px; cursor: normal"></i>
+												<?= date_format(date_create($post->getFecha()), 'd-m-Y') ?>
+											</p>
+											<h6 style="font-style: normal; margin-left: 30px; margin-top: 15px; color: whitesmoke">
+												<?= $post->getTitulo() ?>
+											</h6>
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+					</div>
+				</div>
+			</div>
+			<!-- ***** Post End ***** -->
+		</div>
+	</div>
+	<!-- ***** Popular Posts End ***** -->
+
+	<!-- ***** All Posts Start ***** -->
+	<div class="most-popular">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="heading-section">
+					<h4>
+						<em style="color:whitesmoke; text-decoration: none">All</em>
+						Posts</h4>
+				</div>
+				<div class="row">
+					{# <?php
+					usort($posts, function ($a, $b) {
+						return $b->getFecha() <=> $a->getFecha();
+					}); #}
+					{% for post in posts %}<br>
+					<div class="col-lg-4 col-sm-3">
+						<div class="item" style="min-height: 450px" ;>
+							<a href="/posts/<?= $post->getId() ?>"><img style="min-height: 185px; max-height: 185px" src=" <?= $post->getUrlImagenPost() ?>" alt=""></a>
+							<h4 class="col-lg-12">
+								<?= $post->getTitulo() ?>
+							</h4>
+							<p class="col-lg-12">
+								<?= $post->getDescripcion() ?>
+							</p>
+							<div class="down-content">
+								<div class="avatar" style="max-width: 30px; margin-top: 15px">
+									<img src=" /public/images/imagenes_perfil/<?= $postsRepository->getCreador($post)->getProfileImage() ?>" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
+								</div>
+								<p style="margin-top: 15px; margin-left: 35px">
+									<?= $postsRepository->getCreador($post)->getUsername() ?>
+									<i class="fa fa-calendar" aria-hidden="true" style="margin-left: 15px"></i>
+									<?= date_format(date_create($post->getFecha()), 'd-m-Y') ?>
+								</p>
+								<p style="margin-top: 10px; margin-left: 5px">
+									<i class="fa fa-gamepad"></i>
+									<?= $postsRepository->getJuego($post)->getNombre() ?>
+								</p>
+							</p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ***** All Posts End ***** --></div><!-- ***** Create Post Start ***** --><div class="start-stream">
+<div class="col-lg-12">
+	<div class="heading-section">
+		<h4 style="font-style: normal">
+			<em>How To Create a</em>Post</h4>
+	</div>
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="item">
+				<div class="icon">
+					<img src="../public/images/service-01.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
+				</div>
+				<h4 style="font-style: normal">Go To
+					<em style="font-style: normal; color: #ec6090">Your Profile</em>
+				</h4>
+				<p style="font-style: normal">Navigate to your profile by clicking on your user icon or username. This
+																																												                  is where you can manage and showcase your content.</p>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="item">
+				<div class="icon">
+					<img src="../public/images/service-02.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
+				</div>
+				<h4 style="font-style: normal">
+					<em style="font-style: normal; color: #ec6090">Create Post</em>
+					Button
+				</h4>
+				<p style="font-style: normal">Look for the "Create Post" button on your profile page. Click on it to
+																																												                  initiate the process of adding a new post to your collection.</p>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="item">
+				<div class="icon">
+					<img src="../public/images/service-03.jpg" alt="" style="max-width: 60px; border-radius: 50%;">
+				</div>
+				<h4 style="font-style: normal">Your post is
+					<em style="font-style: normal; color: #ec6090">created</em>
+				</h4>
+				<p style="font-style: normal">After you've created your post, your content is all set for your audience
+																																												                  to enjoy. Just a quick and simple process to share your creations!</p>
+			</div>
+		</div>
+		<div class="col-lg-12">
+			<div class="main-button">
+				<a href="/profile">Go To Profile</a>
+			</div>
+		</div>
+	</div>
+</div></div><!-- ***** Create Post End ***** --></div></div></div>{% endblock %}

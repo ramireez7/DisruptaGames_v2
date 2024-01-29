@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block principal %}
+	<div id="login">
+		<div class="container">
+			<div class="col-xs-12 col-sm-8 col-sm-push-2">
+				<br><br><br><br><br>
+				<h1>Login</h1>
+				<hr>
+				{# <?php include __DIR__ . '/show-error.part.view.php' ?> #}
+				<form clas="form-horizontal" action="/check-login" method="post">
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label class="label-control" style="color: white">Username</label>
+							<input class="form-control" style="background-color: #1B2327; color: white" type="text" name="username" {#value="<?= $username ?? '' ?>"#}>
+						</div>
+					</div>
+					<br>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<label class="label-control" style="color: white">Password</label>
+							<input class="form-control" style="background-color: #1B2327; color: white" name="password" type="password">
+							<br>
+							<button class="pull-right btn btn-primary sr-button">Login</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

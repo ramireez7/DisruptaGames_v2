@@ -3,27 +3,31 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<title>
 		{% block title %}
-			Sym Local
+			Disrupta Games
 		{% endblock %}
 	</title>
-	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22> </text></svg>">
+	<link rel="icon" type="image/jpg" href="../public/images/logo/logo2.png"/>
 	{% block stylesheets %}
-		<!-- Bootstrap core css -->
 		<link
-		rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.min.css')}}">
-		<!-- Bootstrap core css -->
+		href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+		<!-- Bootstrap core CSS -->
 		<link
-		rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
-		<!-- Magnific-popup css -->
+		rel="stylesheet" type="text/css" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
+
+		<!-- Fontawesome core CSS -->
 		<link
-		rel="stylesheet" type="text/css" href="{{ asset('/css/magnific-popup.css') }} ">
-		<!-- Font Awesome icons -->
-		<link rel="stylesheet" type="text/css" href=" {{ asset('/font-awesome/css/font-awesome.min.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
+		rel="stylesheet" type="text/css" href=" {{ asset('/font-awesome/css/font-awesome.min.css') }}">
+
+		<!-- Additional CSS Files -->
+		<link rel="stylesheet" href="{{ asset('/css/fontawesome.css')}}">
+		<link rel="stylesheet" href="{{ asset('/css/templatemo-cyborg-gaming.css')}}">
+		<link rel="stylesheet" href="{{ asset('/css/owl.css')}}">
+		<link rel="stylesheet" href="{{ asset('/css/animate.css')}}">
+		<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 	{% endblock %}
 
 </head>
@@ -40,39 +44,7 @@
 		</main>
 	{% endblock %}
 	{% block footer %}
-		<footer class="home-page">
-			<div class="container text-muted text-center">
-				<div class="row">
-					<ul class="nav col-sm-4">
-						<li class="footer-number">
-							<i class="fa fa-phone sr-icons"></i>
-							(00228)92229954
-						</li>
-						<li>
-							<i class="fa fa-envelope sr-icons"></i>
-							kouvenceslas93@gmail.com</li>
-						<li>Photography Fanatic Template &copy; 2023</li>
-					</ul>
-					<ul class="list-inline social-buttons col-sm-4 col-sm-push-4">
-						<li>
-							<a href="#">
-								<i class="fa fa-facebook sr-icons"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="fa fa-twitter sr-icons"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="fa fa-google-plus sr-icons"></i>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</footer>
+		{% include "footer.part.html.twig" %}
 	{% endblock %}
 </body>
 {% block javascripts %}
@@ -86,4 +58,4 @@
 	<script type="text/javascript" src="{{ asset('/js/jquery.magnific-popup.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/scrollreveal.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/script.js') }}"></script>
-{% endblock %}
+{% endblock %}</head>
