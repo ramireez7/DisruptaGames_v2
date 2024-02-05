@@ -10,6 +10,9 @@ security:
                 class: App\Entity\User
                 property: username
     firewalls:
+        api:
+            pattern: ^/api
+            stateless: true
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -42,6 +45,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/api/auth/(login|register), roles: PUBLIC_ACCESS }
+        - { path: ^/api, roles: PUBLIC_ACCESS }
         # Necesario ROLE_ADMIN el acceso a /imagen*
         - { path: ^/imagen, roles: ROLE_USER }
         # - { path: ^/register, roles: ROLE_ADMIN }
