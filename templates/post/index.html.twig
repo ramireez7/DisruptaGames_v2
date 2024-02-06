@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block principal %}
+    <h1>Posts</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Imagen</th>
+                <th>Fecha</th>
+                <th>NumLikes</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.titulo }}</td>
+                <td>{{ post.descripcion }}</td>
+                <td>{{ post.imagen }}</td>
+                <td>{{ post.fecha ? post.fecha|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ post.numLikes }}</td>
+                <td>
+                    <a href="{{ path('app_post_show', {'id': post.id}) }}">Ir al detalle</a>
+                    <a href="{{ path('app_post_edit', {'id': post.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">No se encontraron registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_post_new') }}">Crear Nuevo Post</a>
+{% endblock %}

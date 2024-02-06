@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuarios{% endblock %}
+
+{% block principal %}
+    <h1>Usuarios</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th>ProfileImage</th>
+                <th>NumPosts</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.id }}</td>
+                <td>{{ usuario.username }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.password }}</td>
+                <td>{{ usuario.role }}</td>
+                <td>{{ usuario.profileImage }}</td>
+                <td>{{ usuario.numPosts }}</td>
+                <td>
+                    <a href="{{ path('app_usuario_show', {'id': usuario.id}) }}">Ir al detalle</a>
+                    <a href="{{ path('app_usuario_edit', {'id': usuario.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No se encontraron registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_usuario_new') }}">Crear Nuevo Usuario</a>
+{% endblock %}

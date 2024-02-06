@@ -16,7 +16,7 @@
 					{% else %}
 						<li class="lien">
 					{% endif %}
-							<a href="{{ path('dis_index') }}">
+							<a href="{{ path('app_index') }}">
 								Home</a>
 						</li>
 
@@ -25,7 +25,7 @@
 					{% else %}
 							<li class="lien">
 					{% endif %}
-							<a href="{{ path('dis_browse') }}">
+							<a href="{{ path('app_browse') }}">
 								Browse</a>
 						</li>
 
@@ -34,7 +34,7 @@
 					{% else %}
 							<li class="lien">
 					{% endif %}
-							<a href="{{ path('dis_games') }}">
+							<a href="{{ path('app_games') }}">
 								Games</a>
 						</li>
 
@@ -43,25 +43,25 @@
 					{% else %}
 							<li class="lien">
 					{% endif %}
-							<a href="{{ path('dis_posts') }}">
+							<a href="{{ path('app_posts') }}">
 								Posts</a>
 						</li>
 
 					{% if is_granted('IS_AUTHENTICATED') %}
 					<li class=" lien">
-						<a href={{ path('dis_logout') }}>
+						<a href={{ path('app_logout') }}>
 							<i class="fa fa-sign-out sr-icons"></i>
 							Logout -
 							{{ app.user.username }}</a>
 					</li>
 					{% else %}
 					<li class=" lien">
-						<a href={{ path('dis_login') }}>
+						<a href={{ path('app_login') }}>
 							<i class="fa fa-sign-in sr-icons"></i>
 							Login</a>
 					</li>
 					<li class=" lien">
-						<a href={{ path('dis_register') }}>
+						<a href={{ path('app_register') }}>
 							<i class="fa fa-user sr-icons"></i>
 							Register</a>
 					</li>

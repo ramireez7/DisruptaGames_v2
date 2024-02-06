@@ -6,13 +6,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProyectoController extends AbstractController
 {
-  #[Route('/', name: 'dis_index')]
+  #[Route('/', name: 'app_index')]
   public function index()
   {
     return $this->render('index.html.twig');
   }
 
-  #[Route('/browse', name: 'dis_browse')]
+  #[Route('/browse', name: 'app_browse')]
   public function browse()
   {
     $juegos = ['hola', 'adios'];
@@ -22,7 +22,7 @@ class ProyectoController extends AbstractController
     return $this->render('browse.html.twig', ['juegos' => $juegos, 'juegosMasDescargados' => $juegosMasDescargados, 'postsDestacados' => $postsDestacados]);
   }
 
-  #[Route('/games', name: 'dis_games')]
+  #[Route('/games', name: 'app_games')]
   public function games()
   {
     $juegosPopulares = ['hola', 'adios'];
@@ -31,7 +31,7 @@ class ProyectoController extends AbstractController
     return $this->render('games.html.twig', ['juegosPopulares' => $juegosPopulares, 'juegosMasDescargados' => $juegosMasDescargados, 'juegos' => $juegos]);
   }
 
-  #[Route('/posts', name: 'dis_posts')]
+  #[Route('/posts', name: 'app_posts')]
   public function posts()
   {
     $postsDestacados = ['hola', 'adios'];
@@ -39,19 +39,19 @@ class ProyectoController extends AbstractController
     return $this->render('posts.html.twig', ['postsDestacados' => $postsDestacados,  'posts' => $posts]);
   }
 
-  #[Route('/login', name: 'dis_login')]
+  #[Route('/login', name: 'app_login')]
   public function login()
   {
     return $this->render('login.html.twig');
   }
 
-  #[Route('/register', name: 'dis_register')]
+  #[Route('/register', name: 'app_register')]
   public function register()
   {
     return $this->render('register.html.twig');
   }
 
-  #[Route('/profile', name: 'dis_profile')]
+  #[Route('/profile', name: 'app_profile')]
   public function profile()
   {
     $posts = ['hola', 'adios'];

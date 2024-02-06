@@ -21,8 +21,8 @@ security:
             provider: app_user_provider
 
             form_login:
-                login_path: dis_login
-                check_path: dis_login
+                login_path: app_login
+                check_path: app_login
                 enable_csrf: true
 
             logout:

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Juegos{% endblock %}
+
+{% block principal %}
+    <h1>Juegos</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+                <th>NumDownloads</th>
+                <th>Rating</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for juego in juegos %}
+            <tr>
+                <td>{{ juego.id }}</td>
+                <td>{{ juego.nombre }}</td>
+                <td>{{ juego.descripcion }}</td>
+                <td>{{ juego.precio }}</td>
+                <td>{{ juego.imagen }}</td>
+                <td>{{ juego.numDownloads }}</td>
+                <td>{{ juego.rating }}</td>
+                <td>
+                    <a href="{{ path('app_juego_show', {'id': juego.id}) }}">Ir al detalle</a>
+                    <a href="{{ path('app_juego_edit', {'id': juego.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No se encontraron registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_juego_new') }}">Crear Nuevo Juego</a>
+{% endblock %}
