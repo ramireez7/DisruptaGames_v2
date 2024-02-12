@@ -3,9 +3,13 @@
 {% block title %}Nuevo Juego{% endblock %}
 
 {% block principal %}
-    <h1>Crear Nuevo Juego</h1>
+<div class="row">
+<div class="container col-lg-6" style="margin-top: 125px">
+    <h1 class="text-center" style="margin-bottom: 25px">Crear Nuevo Juego</h1>
 
     {{ include('juego/_form.html.twig') }}
 
     <a href="{{ path('app_juego_index') }}">Volver a la lista</a>
+</div>
+</div>
 {% endblock %}

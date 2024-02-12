@@ -1209,6 +1209,7 @@ img{
 	margin-bottom: 20px;
 }
 /*-- End of Contact Page Stylesheet --*/
-.etiqueta {
-	color: blue;
+.campo-formulario {
+	background-color: #121D23;
+	color: red;
 }

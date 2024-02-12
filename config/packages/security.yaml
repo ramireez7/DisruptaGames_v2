@@ -7,7 +7,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Usuario
                 property: username
     firewalls:
         api:
@@ -47,11 +47,17 @@ security:
     access_control:
         - { path: ^/api/auth/(login|register), roles: PUBLIC_ACCESS }
         - { path: ^/api, roles: PUBLIC_ACCESS }
-        # Necesario ROLE_ADMIN el acceso a /imagen*
-        - { path: ^/imagen, roles: ROLE_USER }
-        # - { path: ^/register, roles: ROLE_ADMIN }
+
+        # Necesario tener ROLE_ADMIN para la creación de posts*
+        - { path: ^/games/new, roles: ROLE_ADMIN }
+        # Necesario estar logueado para la creación de posts*
+        - { path: ^/posts/new, roles: IS_AUTHENTICATED_FULLY }
+
+        - { path: ^/games, roles: PUBLIC_ACCESS }
+        - { path: ^/posts, roles: PUBLIC_ACCESS }
+
         # allow authenticated users only to access to the profile
-        # - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
 
         # allow unauthenticated users to access the login form
         - { path: ^/login, roles: PUBLIC_ACCESS }

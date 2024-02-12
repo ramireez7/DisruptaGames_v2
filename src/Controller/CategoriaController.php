@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/categoria')]
+#[Route('/category')]
 class CategoriaController extends AbstractController
 {
     #[Route('/', name: 'app_categoria_index', methods: ['GET'])]

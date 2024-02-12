@@ -3,23 +3,3 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
-
-# indexProy:
-#     path: /
-#     controller: App\Controller\ProyectoController::index
-
-# index:
-#     path: /1
-#     controller: App\Controller\DefaultController::index
-
-# index1:
-#     path: /2
-#     controller: App\Controller\DefaultController::indexSegundo
-    
-# index2:
-#     path: /uno
-#     controller: App\Controller\DefaultController::index1
-
-# index3:
-#     path: /dos
-#     controller: App\Controller\DefaultController::index2

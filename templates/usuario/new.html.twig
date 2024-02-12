@@ -3,9 +3,10 @@
 {% block title %}Nuevo Usuario{% endblock %}
 
 {% block principal %}
-    <h1>Crear Nuevo Usuario</h1>
-
+<div class="row">
+<div class="container col-lg-6" style="margin-top: 125px">
+    <h1 class="text-center" style="margin-bottom: 25px">Registro</h1>
     {{ include('usuario/_form.html.twig') }}
-
-    <a href="{{ path('app_usuario_index') }}">Volver a la lista</a>
+</div>
+</div>
 {% endblock %}

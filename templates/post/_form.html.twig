@@ -1,4 +1,32 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <div class="my-custom-class-for-errors">
+    {{ form_errors(form) }}
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.titulo) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.idJuego) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_row(form.descripcion) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.imagen) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.fecha) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_row(form.numLikes) }}
+        </div>
+    </div>
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

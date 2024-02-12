@@ -25,7 +25,7 @@
                 <td>{{ usuario.username }}</td>
                 <td>{{ usuario.email }}</td>
                 <td>{{ usuario.password }}</td>
-                <td>{{ usuario.role }}</td>
+                <td>{{ usuario.roles|join(', ') }}</td>
                 <td>{{ usuario.profileImage }}</td>
                 <td>{{ usuario.numPosts }}</td>
                 <td>
@@ -41,5 +41,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_usuario_new') }}">Crear Nuevo Usuario</a>
+    <a href="{{ path('app_register') }}">Crear Nuevo Usuario</a>
 {% endblock %}
