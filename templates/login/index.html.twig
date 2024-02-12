@@ -1,20 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LoginController!{% endblock %}
+{% block title %}Login
+{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/proyectos/DisruptaGames_v2/src/Controller/LoginController.php'|file_link(0) }}">src/Controller/LoginController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/proyectos/DisruptaGames_v2/templates/login/index.html.twig'|file_link(0) }}">templates/login/index.html.twig</a></code></li>
-    </ul>
-</div>
+{% block principal %}
+	<div class="row">
+		<div class="container col-lg-4" style="margin-top: 125px">
+			<h1 class="text-center" style="margin-bottom: 25px;">Login</h1>
+			{% if error %}
+				<div class="text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div><br>
+			{% endif %}
+			<form class="form-horizontal" action="{{ path('app_login') }}" method="POST">
+				<div class="form-group">
+					<div class="col-xs-12">
+						<label for="username" class="label-control" style="color: white">Username</label>
+						<input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" style="background-color: #1B2327; color: white">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-12">
+						<label for="password" class="label-control" style="color: white">Password</label>
+						<input class="form-control" type="password" id="password" name="_password" style="background-color: #1B2327; color: white">
+						<input type="hidden" name="_target_path" value="/">
+					</div>
+				</div>
+				<button class="btn btn-primary" type="submit">Login</button>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			</form>
+		</div>
+	</div>
 {% endblock %}

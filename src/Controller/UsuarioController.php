@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/users')]
 class UsuarioController extends AbstractController
 {
-    #[Route('/', name: 'app_usuario_index', methods: ['GET'])]
+    #[Route('/', name: 'app_usuarios', methods: ['GET'])]
     public function index(UsuarioRepository $usuarioRepository): Response
     {
         return $this->render('usuario/index.html.twig', [
@@ -22,7 +22,7 @@ class UsuarioController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_usuario_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_usuarios_show', methods: ['GET'])]
     public function show(Usuario $usuario): Response
     {
         return $this->render('usuario/show.html.twig', [
@@ -30,7 +30,7 @@ class UsuarioController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_usuario_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_usuarios_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Usuario $usuario, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(UsuarioType::class, $usuario);
@@ -39,7 +39,7 @@ class UsuarioController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_usuario_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_usuarios', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('usuario/edit.html.twig', [
@@ -48,7 +48,7 @@ class UsuarioController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_usuario_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_usuarios_delete', methods: ['POST'])]
     public function delete(Request $request, Usuario $usuario, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$usuario->getId(), $request->request->get('_token'))) {
@@ -56,6 +56,6 @@ class UsuarioController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_usuario_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_usuarios', [], Response::HTTP_SEE_OTHER);
     }
 }

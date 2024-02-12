@@ -19,10 +19,10 @@ class UsuarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class, ['label' => 'Nombre de usuario', 'label_attr' => ['class' => 'text-white'], 'attr' => ['class' => 'bg-dark text-white']])
-            ->add('email', EmailType::class, ['label' => 'Correo electrónico', 'label_attr' => ['class' => 'text-white'], 'attr' => ['class' => 'bg-dark text-white']])
+            ->add('username', TextType::class, ['label' => 'Username', 'label_attr' => ['class' => 'text-white'], 'attr' => ['class' => 'bg-dark text-white']])
+            ->add('email', EmailType::class, ['label' => 'Email', 'label_attr' => ['class' => 'text-white'], 'attr' => ['class' => 'bg-dark text-white']])
             ->add('profileImage', FileType::class, [
-                'label' => 'Imagen de perfil',
+                'label' => 'Profile image',
                 'label_attr' => ['class' => 'text-white'],
                 'attr' => ['class' => 'bg-dark text-white'],
                 'data_class' => null,
@@ -33,7 +33,7 @@ class UsuarioType extends AbstractType
                             'image/jpeg',
                             'image/png'
                         ],
-                        'mimeTypesMessage' => 'Por favor, seleccione un archivo jpg o png'
+                        'mimeTypesMessage' => 'Please, select a jpg or png file'
                     ])
                 ]
             ])
@@ -42,15 +42,15 @@ class UsuarioType extends AbstractType
                 // this is read and encoded in the controller
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password', 'class' => 'bg-dark text-white'],
-                'label' => 'Contraseña',
+                'label' => 'Password',
                 'label_attr' => ['class' => 'text-white'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Por favor, indica una contraseña',
+                        'message' => 'Password ',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'La contraseña debe tener al menos {{ limit }} caracteres',
+                        'minMessage' => 'Password must have a minimum length of {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

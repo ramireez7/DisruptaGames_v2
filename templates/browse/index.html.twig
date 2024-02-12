@@ -61,11 +61,11 @@
 							</div>
 							<ul>
 								{# <?php
-									usort($juegos, function ($a, $b) {
-										return $b->getNumDownloads() - $a->getNumDownloads();
-									});
-	
-									$juegosMasDescargados = array_slice($juegos, 0, 3); #}
+																	usort($juegos, function ($a, $b) {
+																		return $b->getNumDownloads() - $a->getNumDownloads();
+																	});
+									
+																	$juegosMasDescargados = array_slice($juegos, 0, 3); #}
 								{% for juego in juegosMasDescargados %}
 									<li>
 										{# <a href="/games/<?= $juego->getId() ?>"><img src=" <?= $juego->getUrlImagenJuego() ?>" alt="" class="templatemo-item" style="cursor: pointer"></a> #}
@@ -113,8 +113,8 @@
 							{# <?php #}
 
 							{# usort($posts, function ($a, $b) {
-													            return $b->getNumLikes() - $a->getNumLikes();
-													          }); #}
+																				            return $b->getNumLikes() - $a->getNumLikes();
+																				          }); #}
 
 							{# $postsDestacados = array_slice($posts, 0, 4); #}
 
@@ -124,7 +124,7 @@
 											<p>
 												<i class="fa fa-thumbs-up"></i>
 												{# <?= $post->getNumLikes() ?>
-																							                    Likes #}
+																																			                    Likes #}
 											</p>
 										</div>
 										<div

@@ -1,45 +1,137 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Juegos{% endblock %}
-
 {% block principal %}
-    <h1>Juegos</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Precio</th>
-                <th>Imagen</th>
-                <th>NumDownloads</th>
-                <th>Rating</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for juego in juegos %}
-            <tr>
-                <td>{{ juego.id }}</td>
-                <td>{{ juego.nombre }}</td>
-                <td>{{ juego.descripcion }}</td>
-                <td>{{ juego.precio }}</td>
-                <td>{{ juego.imagen }}</td>
-                <td>{{ juego.numDownloads }}</td>
-                <td>{{ juego.rating }}</td>
-                <td>
-                    <a href="{{ path('app_juego_show', {'id': juego.id}) }}">Ir al detalle</a>
-                    <a href="{{ path('app_juego_edit', {'id': juego.id}) }}">Editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">No se encontraron registros</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_juego_new') }}">Crear Nuevo Juego</a>
-{% endblock %}
+	<div class="container">
+		<div class="page-content">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="featured-games header-text">
+						<div class="heading-section">
+							<h4>
+								<em style="color:whitesmoke">Featured</em>
+								Games</h4>
+						</div>
+						<div class="owl-features owl-carousel">
+							{% for juego in juegosPopulares %}
+								<div class="item">
+									<div
+										class="thumb">
+										{# <a href="/games/<?= $juego->getId() ?>"><img src=" <?= $juego->getUrlImagenJuego() ?>" alt="" style="cursor: pointer"></a> #}
+										<div class="hover-effect">
+											<h6
+												style="cursor: pointer">{# <?= $juegosRepository->getCategoria($juego)->getNombre() ?> #}
+											</h6>
+										</div>
+									</div>
+									{# <a href="/games/<?= $juego->getId() ?>"> #}
+									<h4 class="col-lg-8" style="cursor: pointer">
+										<?= $juego->getNombre(); ?>
+										<br><span
+											style="cursor: pointer">{# <?= $juegosRepository->getCategoria($juego)->getNombre() ?> #}
+										</span>
+									</h4>
+								</a>
+								<ul>
+									<li>
+										<i class="fa fa-star"></i>
+										{# <?= $juego->getRating() ?> #}
+									</li>
+									<li>
+										<i class="fa fa-money-bill text-success"></i>
+										{# <?= $juego->getPrecio() ?>€ #}
+									</li>
+									<li>
+										<i class="fa fa-download"></i>
+										{# <?= $juego->getNumDownloads() ?> #}
+									</li>
+								</ul>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="top-downloaded">
+					<div class="heading-section">
+						<h4>
+							<em style="color:whitesmoke">Top</em>
+							Downloaded</h4>
+					</div>
+					<ul>
+						{# <?php
+																																						usort($juegos, function ($a, $b) {
+																																							return $b->getNumDownloads() - $a->getNumDownloads();
+																																						});
+																																		
+																																						$juegosMasDescargados = array_slice($juegos, 0, 3); #}
+						{% for juego in juegosMasDescargados %}
+							<li>
+								{# <a href="/games/<?= $juego->getId() ?>"><img src=" <?= $juego->getUrlImagenJuego() ?>" alt="" class="templatemo-item"></a> #}
+								{# <a href="/games/<?= $juego->getId() ?>"> #}<h4>
+									{# <?= $juego->getNombre(); ?> #}
+								</h4>
+							</li>
+						</a>
+						<h6>
+							{# <?= $juegosRepository->getCategoria($juego)->getNombre() ?> #}
+						</h6>
+						<span>
+							<i class="fa fa-star" style="color: yellow;"></i>
+							{# <?= $juego->getRating() ?> #}
+						</span>
+						<span>
+							<i class="fa fa-download" style="color: #ec6090;"></i>
+							{# <?= $juego->getNumDownloads() ?> #}
+						</span>
+						<div class="download">
+							<a href="#">
+								<i class="fa fa-download"></i>
+							</a>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+			<div class="text-button">
+				<a href="#all-games">View All Games</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="most-popular" id="all-games">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="heading-section">
+					<h4>
+						<em style="color:whitesmoke; text-decoration: none">All</em>
+						Games</h4>
+				</div>
+				<div class="row">
+					{% for juego in juegos %}
+						<div class="col-lg-2 col-sm-4">
+							<div
+								class="item" style="min-height: 375px" ;>
+								{# <a href="/games/<?= $juego->getId() ?>"><img src=" <?= $juego->getUrlImagenJuego() ?>" alt=""></a>
+																																								<a href="/games/<?= $juego->getId() ?>"> #}
+								<h4
+									class="col-lg-12" style="font-size: 14px">{# <?= $juego->getNombre(); ?><br><span><?= $juegosRepository->getCategoria($juego)->getNombre() ?> #}
+								</span>
+							</h4>
+						</a>
+						<p>
+							<i class="fa fa-star" style="color: yellow"></i>
+							{# <?= $juego->getRating() ?></p> #}
+						</p>
+						<p>
+							<i class="fa fa-money-bill text-success"></i>
+							{# <?= $juego->getPrecio() ?>€</p> #}
+						</p>
+						<p>
+							<i class="fa fa-download" style="color: #ec6090"></i>
+							{# <?= $juego->getNSumDownloads() ?></p> #}
+						</p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div></div></div></div></div>{% endblock %}
