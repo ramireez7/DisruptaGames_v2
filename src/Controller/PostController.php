@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\BLL\PostBLL;
 use App\Entity\Post;
 use App\Form\PostType;
-use App\Repository\PostRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,12 +18,23 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/posts')]
 class PostController extends AbstractController
 {
-    #[Route('/', name: 'app_posts', methods: ['GET'])]
-    public function index(ManagerRegistry $doctrine): Response
+    private $params;
+
+    public function __construct(ParameterBagInterface $params)
     {
-        $postsDestacados = ['hola', 'adios'];
-        $posts = $doctrine->getRepository(Post::class)->findAll();
-        return $this->render('post/index.html.twig', ['postsDestacados' => $postsDestacados, 'posts' => $posts]);
+        $this->params = $params;
+    }
+
+    #[Route('/', name: 'app_posts', methods: ['GET'])]
+    #[Route('/orden/{ordenacion}', name: 'app_posts_ordenado', methods: ['GET'])]
+    public function index(PostBLL $postBLL, string $ordenacion=null): Response
+    {
+        $posts = $postBLL->getPostsConCreadorYJuego($ordenacion);
+        $postsConMasLikes = $postBLL->getPostsConMasLikes();
+        
+        return $this->render('post/index.html.twig', [
+            'postsConMasLikes' => $postsConMasLikes,
+            'posts' => $posts]);
     }
 
     #[Route('/new', name: 'app_posts_new', methods: ['GET', 'POST'])]
@@ -31,6 +45,34 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Manejar la carga de la imagen
+            $imagen = $form['imagen']->getData();
+
+            if ($imagen) {
+                // Generar un nombre único para la imagen
+                $nombreArchivo = md5(uniqid()) . '.' . $imagen->guessExtension();
+
+                // Mover la imagen al directorio de destino
+                try {
+                    $imagen->move(
+                        $this->params->get('images_directory_posts'),
+                        $nombreArchivo
+                    );
+                } catch (FileException $e) {
+                    // Manejar errores si la carga de la imagen falla
+                }
+
+                // Establecer el nombre de la imagen en el post
+                $post->setImagen($nombreArchivo);
+            }
+
+            $usuario = $this->getUser();
+            $post->setIdCreador($usuario);
+            $post->setNumLikes(0);
+            $fecha = new DateTime();
+            $post->setFecha($fecha);
+
             $entityManager->persist($post);
             $entityManager->flush();
 

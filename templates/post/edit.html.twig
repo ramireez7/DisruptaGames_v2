@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Editar Post{% endblock %}
+{% block title %}Edit Game
+{% endblock %}
 
 {% block principal %}
-    <h1>Editar Post</h1>
 
-    {{ include('post/_form.html.twig', {'button_label': 'Update'}) }}
+	<div class="row">
+		<div class="container col-lg-6" style="margin-top: 125px">
+			<h1 class="text-center" style="margin-bottom: 25px">Edit Post</h1>
 
-    <a href="{{ path('app_posts') }}">Volver a la lista</a>
+			{{ include('post/_form.html.twig', {'button_label': 'Update'}) }}
+            {{ include('post/_delete_form.html.twig') }}
 
-    {{ include('post/_delete_form.html.twig') }}
+			<a href="{{ path('app_games') }}">Go back to games</a>
+		</div>
+	</div>
 {% endblock %}

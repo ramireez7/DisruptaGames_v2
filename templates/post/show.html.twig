@@ -1,41 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Post{% endblock %}
+{% block title %}Post
+{% endblock %}
 
 {% block principal %}
-    <h1>Post</h1>
+	<div class="row">
+		<div class="container col-lg-6" style="margin-top: 125px">
+			<h1 class="text-center" style="margin-bottom: 25px">Post</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ post.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ post.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Descripcion</th>
-                <td>{{ post.descripcion }}</td>
-            </tr>
-            <tr>
-                <th>Imagen</th>
-                <td>{{ post.imagen }}</td>
-            </tr>
-            <tr>
-                <th>Fecha</th>
-                <td>{{ post.fecha ? post.fecha|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>NumLikes</th>
-                <td>{{ post.numLikes }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_posts') }}">Volver a la lista</a>
-    <a href="{{ path('app_posts_edit', {'id': post.id}) }}">Editar</a>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ post.id }}</td>
+					</tr>
+					<tr>
+						<th>Titulo</th>
+						<td>{{ post.titulo }}</td>
+					</tr>
+					<tr>
+						<th>Descripcion</th>
+						<td>{{ post.descripcion }}</td>
+					</tr>
+					<tr>
+						<th>Imagen</th>
+						<td>{{ post.imagen }}</td>
+					</tr>
+					<tr>
+						<th>Fecha</th>
+						<td>{{ post.fecha ? post.fecha|date('Y-m-d H:i:s') : '' }}</td>
+					</tr>
+					<tr>
+						<th>NumLikes</th>
+						<td>{{ post.numLikes }}</td>
+					</tr>
+				</tbody>
+			</table>
 
-    {{ include('post/_delete_form.html.twig') }}
+			<div class="row">
+				<a class="btn btn-primary col-1 ms-3 mb-3" href="{{ path('app_posts_edit', {'id': post.id}) }}">Edit</a>
+			</div>
+
+			{{ include('post/_delete_form.html.twig') }}
+
+			<a href="{{ path('app_posts') }}">Go back to posts</a>
+
+		</div>
+	</div>
 {% endblock %}

@@ -1,4 +1,34 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="text-danger">
+	{{ form_errors(form) }}
+</div>
+<div class="row">
+	<div class="col-md-12">
+		{{ form_row(form.nombre) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		{{ form_row(form.descripcion) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		{{ form_row(form.precio) }}
+	</div>
+	<div class="col-md-6">
+		{{ form_row(form.rating) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		{{ form_row(form.imagen) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		{{ form_row(form.categoria) }}
+	</div>
+</div>
+<button class="btn btn-primary mt-1 mb-3">{{ button_label|default('Create game') }}</button>
 {{ form_end(form) }}

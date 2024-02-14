@@ -1,26 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categoria{% endblock %}
+{% block title %}Categoria
+{% endblock %}
 
 {% block principal %}
-    <h1>Categoria</h1>
+	<div class="row">
+		<div class="container col-lg-6" style="margin-top: 125px">
+			<h1 class="text-center" style="margin-bottom: 25px">Category</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ categorium.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ categorium.nombre }}</td>
-            </tr>
-        </tbody>
-    </table>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ categorium.id }}</td>
+					</tr>
+					<tr>
+						<th>Nombre</th>
+						<td>{{ categorium.nombre }}</td>
+					</tr>
+				</tbody>
+			</table>
 
-    <a href="{{ path('app_categoria_index') }}">Volver a la lista</a>
+			<div class="row">
+				<a class="btn btn-primary col-1 ms-3 mb-3" href="{{ path('app_categoria_edit', {'id': categorium.id}) }}">Edit</a>
+			</div>
 
-    <a href="{{ path('app_categoria_edit', {'id': categorium.id}) }}">Editar</a>
+			{{ include('categoria/_delete_form.html.twig') }}
 
-    {{ include('categoria/_delete_form.html.twig') }}
+            <a href="{{ path('app_categoria') }}">Go back to categories</a>
+		</div>
+	</div>
 {% endblock %}

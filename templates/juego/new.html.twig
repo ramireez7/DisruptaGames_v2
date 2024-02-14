@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nuevo Juego{% endblock %}
+{% block title %}New Game{% endblock %}
 
 {% block principal %}
 <div class="row">
 <div class="container col-lg-6" style="margin-top: 125px">
-    <h1 class="text-center" style="margin-bottom: 25px">Crear Nuevo Juego</h1>
+    <h1 class="text-center" style="margin-bottom: 25px">New Game</h1>
 
     {{ include('juego/_form.html.twig') }}
 
-    <a href="{{ path('app_games') }}">Volver a la lista</a>
+    <a href="{{ path('app_games') }}">Go back to games</a>
 </div>
 </div>
 {% endblock %}

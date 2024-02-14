@@ -21,6 +21,25 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+    public function findPostsConCreadorYJuego(string $ordenacion, string $tipoOrdenacion)
+    {
+        $qb = $this->createQueryBuilder('post');
+        $qb->addSelect('idCreador', 'idJuego')
+            ->innerJoin('post.idCreador', 'idCreador')
+            ->innerJoin('post.idJuego', 'idJuego')
+            ->orderBy('post.' . $ordenacion, $tipoOrdenacion);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findPostsConMasLikes()
+    {
+        $qb = $this->createQueryBuilder('post');
+        $qb->orderBy('post.numLikes', 'DESC')
+            ->setMaxResults(4);
+        return $qb->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Post[] Returns an array of Post objects
 //     */

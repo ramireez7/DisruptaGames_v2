@@ -12,7 +12,7 @@
 					<!-- ***** Menu Start ***** -->
 					<ul class="nav">
 					{% if app.request.pathinfo=='/index' or app.request.pathinfo=='/' %}
-						<li class="active lien">
+						<li class="active lien bg-dark">
 					{% else %}
 						<li class="lien">
 					{% endif %}
@@ -21,7 +21,7 @@
 						</li>
 
 					{% if app.request.pathinfo=='/browse' %}
-						<li class="active lien">
+						<li class="active lien bg-dark">
 					{% else %}
 							<li class="lien">
 					{% endif %}
@@ -29,8 +29,8 @@
 								Browse</a>
 						</li>
 
-					{% if app.request.pathinfo=='/games' %}
-						<li class="active lien">
+					{% if app.request.pathinfo=='/games/' %}
+						<li class="active lien bg-dark">
 					{% else %}
 							<li class="lien">
 					{% endif %}
@@ -38,8 +38,8 @@
 								Games</a>
 						</li>
 
-					{% if app.request.pathinfo=='/posts' %}
-						<li class="active lien">
+					{% if app.request.pathinfo=='/posts/' %}
+						<li class="active lien bg-dark">
 					{% else %}
 							<li class="lien">
 					{% endif %}
@@ -47,53 +47,54 @@
 								Posts</a>
 						</li>
 
-					{% if is_granted('IS_AUTHENTICATED') %}
-				{% if app.request.pathinfo=='/profile' %}
-					<li class="active lien">
-					{% else %}
-						<li class="lien">
+					{% if is_granted('ROLE_ADMIN') %}
+						{% if app.request.pathinfo=='/users/' %}
+							<li class="active lien bg-dark">
+						{% else %}
+							<li class="lien">
 						{% endif %}
-						<a href="{{ path('app_profile') }}">
-							Profile</a>
-					</li>
-					<li class="lien mt-1">
-						<a href={{ path('app_logout') }}>
-							<i class="fa fa-sign-out sr-icons"></i>
-							Logout -
-							{{ app.user.username }}</a>
-					</li>
-					{% else %}
-					<li class="lien">
-						<a href={{ path('app_login') }}>
-							<i class="fa fa-sign-in sr-icons me-1"></i>
-							Login</a>
-					</li>
-					<li class="lien mt-1">
-						<a href={{ path('app_register') }}>
-							<i class="fa fa-user sr-icons me-1"></i>
-						  Register</a>
-					</li>
+								<a href="{{ path('app_usuarios') }}">
+										Users
+								</a>
+							</li>
 					{% endif %}
 
-					{# <?php
-						$usuariosRepository = App::getRepository(UsuariosRepository::class);
-						$usuario = $usuariosRepository->findUserById($_SESSION["loguedUser"]);
-
-						if ($usuario->getRole() === "ROLE_ADMIN")
-							if (Utils::esOpcionMenuActiva("/users"))
-								echo '<li><a href="/users" class="active">Users</a></li>';
-							else
-								echo '<li><a href="/users">Users</a></li>';
-						?>
-
-						<li>
-							<a href="/profile">
-								<?= $app['user']->getUsername() ?>
-								<img src="{{ asset('images/imagenes_perfil/' + ) }}" alt="">
-								<img src="../public/images/imagenes_perfil/<?= $app['user']->getProfileImage() ?>" alt="">
-							</a>
+					{% if is_granted('IS_AUTHENTICATED') %}
+						{% if app.request.pathinfo=='/profile' %}
+						<li class="active lien bg-dark">
+						{% else %}
+							<li class="lien">
+							{% endif %}
+							<a href="{{ path('app_profile') }}">
+								Profile</a>
 						</li>
-						<?php endif; ?> #}
+						<li class="lien mt-1">
+							<a href={{ path('app_logout') }}>
+								<i class="fa fa-sign-out sr-icons"></i>
+								Logout -
+								{{ app.user.username }}</a>
+						</li>
+					{% else %}
+						{% if app.request.pathinfo=='/login' %}
+							<li class="active lien bg-dark">
+						{% else %}
+							<li class="lien">
+						{% endif %}
+							<a href={{ path('app_login') }}>
+								<i class="fa fa-sign-in sr-icons me-1"></i>
+								Login</a>
+						</li>
+
+						{% if app.request.pathinfo=='/register' %}
+							<li class="lien mt-1 bg-dark">
+						{% else %}
+							<li class="lien mt-1">
+						{% endif %}
+							<a href={{ path('app_register') }}>
+								<i class="fa fa-user sr-icons me-1"></i>
+								Register</a>
+						</li>
+					{% endif %}
 					</ul>
 					<a class='menu-trigger'>
 						<span>Menu</span>

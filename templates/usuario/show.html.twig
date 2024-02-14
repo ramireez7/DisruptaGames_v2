@@ -1,46 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Usuario{% endblock %}
+{% block title %}Usuario
+{% endblock %}
 
 {% block principal %}
-    <h1>Usuario</h1>
+	<div class="row">
+		<div class="container col-lg-6" style="margin-top: 125px">
+			<h1 class="text-center" style="margin-bottom: 25px">User</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ usuario.id }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ usuario.username }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ usuario.email }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ usuario.password }}</td>
-            </tr>
-            <tr>
-                <th>Role</th>
-                <td>{{ usuario.roles }}</td>
-            </tr>
-            <tr>
-                <th>ProfileImage</th>
-                <td>{{ usuario.profileImage }}</td>
-            </tr>
-            <tr>
-                <th>NumPosts</th>
-                <td>{{ usuario.numPosts }}</td>
-            </tr>
-        </tbody>
-    </table>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ usuario.id }}</td>
+					</tr>
+					<tr>
+						<th>Username</th>
+						<td>{{ usuario.username }}</td>
+					</tr>
+					<tr>
+						<th>Email</th>
+						<td>{{ usuario.email }}</td>
+					</tr>
+					<tr>
+						<th>Password</th>
+						<td>{{ usuario.password }}</td>
+					</tr>
+					<tr>
+						<th>Role</th>
+						<td>{{ usuario.roles|join(', ') }}</td>
+					</tr>
+					<tr>
+						<th>ProfileImage</th>
+						<td>{{ usuario.profileImage }}</td>
+					</tr>
+					<tr>
+						<th>NumPosts</th>
+						<td>{{ usuario.numPosts }}</td>
+					</tr>
+				</tbody>
+			</table>
 
-    <a href="{{ path('app_usuario_index') }}">Volver a la lista</a>
-
-    <a href="{{ path('app_usuario_edit', {'id': usuario.id}) }}">Editar</a>
-
-    {{ include('usuario/_delete_form.html.twig') }}
+            <div class="row">
+			    <a class="btn btn-primary col-1 ms-3 mb-3" href="{{ path('app_usuarios_edit', {'id': usuario.id}) }}">Edit</a>
+            </div>
+			{{ include('usuario/_delete_form.html.twig') }}
+		
+            <a href="{{ path('app_usuarios') }}">Go back to users</a>
+        </div>
+	</div>
 {% endblock %}

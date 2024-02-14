@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/category')]
 class CategoriaController extends AbstractController
 {
-    #[Route('/', name: 'app_categoria_index', methods: ['GET'])]
+    #[Route('/', name: 'app_categoria', methods: ['GET'])]
     public function index(CategoriaRepository $categoriaRepository): Response
     {
         return $this->render('categoria/index.html.twig', [
@@ -33,7 +33,7 @@ class CategoriaController extends AbstractController
             $entityManager->persist($categorium);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_categoria_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_categoria', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('categoria/new.html.twig', [
@@ -50,7 +50,7 @@ class CategoriaController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_categoria_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'app_categoria_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Categoria $categorium, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CategoriaType::class, $categorium);
@@ -59,7 +59,7 @@ class CategoriaController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_categoria_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_categoria', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('categoria/edit.html.twig', [
@@ -76,6 +76,6 @@ class CategoriaController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_categoria_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_categoria', [], Response::HTTP_SEE_OTHER);
     }
 }

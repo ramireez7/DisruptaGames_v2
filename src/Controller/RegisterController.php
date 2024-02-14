@@ -43,7 +43,7 @@ class RegisterController extends AbstractController
 
       if ($imagenPerfil) {
         // Generar un nombre único para la imagen
-        $nombreArchivo = uniqid() . '.' . $imagenPerfil->guessExtension();
+        $nombreArchivo = md5(uniqid()) . '.' . $imagenPerfil->guessExtension();
 
         // Mover la imagen al directorio de destino
         try {

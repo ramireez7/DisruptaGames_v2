@@ -21,6 +21,30 @@ class JuegoRepository extends ServiceEntityRepository
         parent::__construct($registry, Juego::class);
     }
 
+    public function findJuegosConCategoria(string $ordenacion, string $tipoOrdenacion)
+    {
+        $qb = $this->createQueryBuilder('juego');
+        $qb->addSelect('categoria')
+            ->innerJoin('juego.categoria', 'categoria')
+            ->orderBy('juego.' . $ordenacion, $tipoOrdenacion);
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findJuegosConMejorValoracion()
+    {
+        $qb = $this->createQueryBuilder('juego');
+        $qb->orderBy('juego.rating', 'DESC')
+            ->setMaxResults(3);
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findJuegosConMasDescargas() {
+        $qb = $this->createQueryBuilder('juego');
+        $qb->orderBy('juego.numDownloads', 'DESC')
+            ->setMaxResults(3);
+        return $qb->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Juego[] Returns an array of Juego objects
 //     */

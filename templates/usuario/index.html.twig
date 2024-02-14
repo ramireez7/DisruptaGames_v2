@@ -29,8 +29,8 @@
                 <td>{{ usuario.profileImage }}</td>
                 <td>{{ usuario.numPosts }}</td>
                 <td>
-                    <a href="{{ path('app_usuario_show', {'id': usuario.id}) }}">Ir al detalle</a>
-                    <a href="{{ path('app_usuario_edit', {'id': usuario.id}) }}">Editar</a>
+                    <a href="{{ path('app_usuarios_show', {'id': usuario.id}) }}">Ir al detalle</a>
+                    <a href="{{ path('app_usuarios_edit', {'id': usuario.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}

@@ -20,11 +20,20 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titulo', TextType::class, ['label' => 'Título', 'label_attr' => ['class' => 'text-white'], 'attr' => ['class' => 'bg-dark text-white']])
-            ->add('descripcion', TextType::class, ['label' => 'Descripción', 'label_attr' => ['class' => 'text-white'], 'attr' => ['class' => 'bg-dark text-white']])
-            ->add('imagen', FileType::class, [
-                'label' => 'Imagen (JPG o PNG)',
+            ->add('titulo', TextType::class, [
+                'label' => 'Title',
                 'label_attr' => ['class' => 'text-white'],
+                'attr' => ['class' => 'bg-dark text-white']
+            ])
+            ->add('descripcion', TextType::class, [
+                'label' => 'Description',
+                'label_attr' => ['class' => 'text-white'],
+                'attr' => ['class' => 'bg-dark text-white']
+            ])
+            ->add('imagen', FileType::class, [
+                'label' => 'Image',
+                'label_attr' => ['class' => 'text-white'],
+                'attr' => ['class' => 'bg-dark text-white'],
                 'data_class' => null,
                 'constraints' => [
                     new File([
@@ -37,10 +46,12 @@ class PostType extends AbstractType
                     ])
                 ]
             ])
-            ->add('fecha', DateType::class, ['label' => 'Fecha', 'label_attr' => ['class' => 'text-white'], 'attr' => ['class' => 'bg-dark text-white']])
-            ->add('numLikes', NumberType::class, ['label' => 'Número de likes', 'label_attr' => ['class' => 'text-white'], 'attr' => ['class' => 'bg-dark text-white']])
-            ->add('idCreador', EntityType::class, ['class' => Usuario::class, 'choice_label' => 'id', 'label_attr' => ['class' => 'hidden'], 'attr' => ['class' => 'hidden']])
-            ->add('idJuego', EntityType::class, ['class' => Juego::class, 'choice_label' => 'id', 'label' => 'Juego', 'label_attr' => ['class' => 'text-white'], 'attr' => ['class' => 'bg-dark text-white'],
+            ->add('idJuego', EntityType::class, [
+                'class' => Juego::class,
+                'choice_label' => 'nombre',
+                'label' => 'Game',
+                'label_attr' => ['class' => 'text-white'],
+                'attr' => ['class' => 'bg-dark text-white'],
             ])
         ;
     }

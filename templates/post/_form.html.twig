@@ -1,32 +1,26 @@
 {{ form_start(form) }}
-    <div class="text-danger">
-    {{ form_errors(form) }}
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            {{ form_row(form.titulo) }}
-        </div>
-        <div class="col-md-6">
-            {{ form_row(form.idJuego) }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            {{ form_row(form.descripcion) }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            {{ form_row(form.imagen) }}
-        </div>
-        <div class="col-md-6">
-            {{ form_row(form.fecha) }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            {{ form_row(form.numLikes) }}
-        </div>
-    </div>
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="text-danger">
+	{{ form_errors(form) }}
+</div>
+<div class="row">
+	<div class="col-md-12">
+		{{ form_row(form.titulo) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		{{ form_row(form.descripcion) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		{{ form_row(form.imagen) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		{{ form_row(form.idJuego) }}
+	</div>
+</div>
+<button class="btn btn-primary mt-1 mb-3">{{ button_label|default('Create post') }}</button>
 {{ form_end(form) }}

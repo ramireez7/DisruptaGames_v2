@@ -19,8 +19,16 @@ class UsuarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class, ['label' => 'Username', 'label_attr' => ['class' => 'text-white'], 'attr' => ['class' => 'bg-dark text-white']])
-            ->add('email', EmailType::class, ['label' => 'Email', 'label_attr' => ['class' => 'text-white'], 'attr' => ['class' => 'bg-dark text-white']])
+            ->add('username', TextType::class, [
+                'label' => 'Username',
+                'label_attr' => ['class' => 'text-white'],
+                'attr' => ['class' => 'bg-dark text-white']
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+                'label_attr' => ['class' => 'text-white'],
+                'attr' => ['class' => 'bg-dark text-white']
+            ])
             ->add('profileImage', FileType::class, [
                 'label' => 'Profile image',
                 'label_attr' => ['class' => 'text-white'],
