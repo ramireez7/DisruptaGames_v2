@@ -17,7 +17,7 @@
 										<div class="thumb">
 											<a href="/games/{{ juego.id }}"><img src="{{ asset(juego.getUrlImagenJuego()) }}" alt="{{ juego.nombre }}" style="cursor: pointer"></a>
 											<div class="hover-effect">
-												<h6 style="cursor: pointer">{{ juego.nombre }}
+												<h6 style="cursor: pointer">{{ juego.categoria }}
 												</h6>
 											</div>
 										</div>
@@ -96,9 +96,15 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="heading-section">
-						<h4>
+						<h4 class="mb-2">
 							<em style="color:whitesmoke; text-decoration: none">All</em>
 							Games</h4>
+					</div>
+					<div class="row my-4" style="display: flex">
+									<a class="col-md-2" href="{{ path("app_games_ordenado", {ordenacion: 'id'}) }}">Order by Id 🔽</a>
+									<a class="col-md-2" href="{{ path("app_games_ordenado", {ordenacion: 'nombre'}) }}">Order by Name 🔽</a>
+									<a class="col-md-2" href="{{ path("app_games_ordenado", {ordenacion: 'precio'}) }}">Order by Price 🔽</a>
+									<a class="col-md-3" href="{{ path("app_games_ordenado", {ordenacion: 'categoria'}) }}">Order by Category 🔽</a>
 					</div>
 					<div class="row">
 						{% for juego in juegos %}
@@ -129,7 +135,7 @@
 						{% endfor %}
 					</div>
 					<div class="col-lg-12 text-center mt-5">
-						{% if is_granted('IS_AUTHENTICATED') %}
+						{% if is_granted('ROLE_ADMIN') %}
 							<div class="main-button">
 								<a href="/games/new">Create game</a>
 							</div>

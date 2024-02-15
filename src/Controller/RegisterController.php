@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Usuario;
-use App\Form\UsuarioType;
+use App\Form\RegisterFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -26,7 +26,7 @@ class RegisterController extends AbstractController
   public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
   {
     $usuario = new Usuario();
-    $form = $this->createForm(UsuarioType::class, $usuario);
+    $form = $this->createForm(RegisterFormType::class, $usuario);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
@@ -67,7 +67,7 @@ class RegisterController extends AbstractController
       return $this->redirectToRoute('app_login');
     }
 
-    return $this->render('usuario/new.html.twig', [
+    return $this->render('register/registerform.html.twig', [
       'usuario' => $usuario,
       'form' => $form,
     ]);

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Post
+{% endblock %}
+
+{% block principal %}
+	<div class="row">
+		<div class="container col-lg-6" style="margin-top: 125px">
+			<h1 class="text-center" style="margin-bottom: 25px">Register</h1>
+
+			{{ form_start(form) }}
+			<div class="my-custom-class-for-errors">
+				{{ form_errors(form) }}
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					{{ form_row(form.username) }}
+				</div>
+				<div class="col-md-6">
+					{{ form_row(form.email) }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					{{ form_row(form.profileImage) }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					{{ form_row(form.plainPassword) }}
+				</div>
+			</div>
+			<button class="btn btn-primary mb-3">{{ button_label|default('Register') }}</button>
+			{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}

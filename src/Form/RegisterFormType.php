@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class UsuarioType extends AbstractType
+class RegisterFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -45,11 +45,13 @@ class UsuarioType extends AbstractType
                     ])
                 ]
             ])
-            ->add('password', PasswordType::class, [
-                'attr' => ['class' => 'bg-dark text-white'],
+            ->add('plainPassword', PasswordType::class, [
+                // instead of being set onto the object directly,
+                // this is read and encoded in the controller
+                'mapped' => false,
+                'attr' => ['autocomplete' => 'new-password', 'class' => 'bg-dark text-white'],
                 'label' => 'Password',
                 'label_attr' => ['class' => 'text-white'],
-                'required' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Password ',

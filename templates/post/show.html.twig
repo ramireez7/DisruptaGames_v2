@@ -8,12 +8,15 @@
 		<div class="container col-lg-6" style="margin-top: 125px">
 			<h1 class="text-center" style="margin-bottom: 25px">Post</h1>
 
-
 			<table class="table">
 				<tbody>
 					<tr>
 						<th>Id</th>
 						<td>{{ post.id }}</td>
+					</tr>
+					<tr>
+						<th>Creador</th>
+						<td>{{ post.idCreador }}</td>
 					</tr>
 					<tr>
 						<th>Titulo</th>
@@ -25,11 +28,15 @@
 					</tr>
 					<tr>
 						<th>Imagen</th>
-						<td>{{ post.imagen }}</td>
+						<td><img src="{{ asset('/images/posts/' ~ post.imagen) }}" style="height: 200px; width: 400px"</td>
 					</tr>
 					<tr>
 						<th>Fecha</th>
-						<td>{{ post.fecha ? post.fecha|date('Y-m-d H:i:s') : '' }}</td>
+						<td>{{ post.fecha ? post.fecha|date('d/m/Y H:i') : '' }}</td>
+					</tr>
+					<tr>
+						<th>Juego</th>
+						<td>{{ post.idJuego }}</td>
 					</tr>
 					<tr>
 						<th>NumLikes</th>
@@ -38,11 +45,13 @@
 				</tbody>
 			</table>
 
-			<div class="row">
-				<a class="btn btn-primary col-1 ms-3 mb-3" href="{{ path('app_posts_edit', {'id': post.id}) }}">Edit</a>
-			</div>
+			{% if post.idCreador == app.user %}
+				<div class="row">
+					<a class="btn btn-primary col-1 ms-3 mb-3" href="{{ path('app_posts_edit', {'id': post.id}) }}">Edit</a>
+				</div>
 
-			{{ include('post/_delete_form.html.twig') }}
+				{{ include('post/_delete_form.html.twig') }}
+			{% endif %}
 
 			<a href="{{ path('app_posts') }}">Go back to posts</a>
 

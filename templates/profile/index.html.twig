@@ -14,16 +14,16 @@
 									profile</h1>
 								<div class="row">
 									<div class="col-lg-4">
-										<img src="../public/images/imagenes_perfil/<?= $app['user']->getProfileImage() ?>" alt="" style="border-radius: 23px;">
+										<img src="{{ asset(app.user.getProfileImageUrl()) }}" alt="" style="border-radius: 23px;">
 									</div>
 									<div class="col-lg-4 align-self-center">
 										<div class="main-info header-text">
 											<h4 style="color: whitesmoke">
-												<?= $app['user']->getUsername() ?>
+												{{ app.user.username}}
 											</h4>
 											<p>Post A New Post By Touching The Button Below.</p>
 											<div class="main-border-button">
-												<a href="/new-post">Create Post</a>
+												<a href="/posts/new">Create post</a>
 											</div>
 										</div>
 									</div>
@@ -37,7 +37,7 @@
 											</li>
 											<li>Posts
 												<span>
-													<?= $app['user']->getNumPosts() ?>
+													{{ app.user.numPosts}}
 												</span>
 											</li>
 											<li>Clips
@@ -48,21 +48,15 @@
 									<div>
 										<br>
 										<button class="btn btn-dark" style="border: 1px grey solid">
-											<a href="/change-password">
+											<a href="{{ path('app_change_password', {'id': app.user.id}) }}">
 												<i class="fa fa-sign-out sr-icons"></i>
 												Change Password
 											</a>
 										</button>
 										<button class="btn btn-dark" style="border: 1px grey solid">
-											<a href="/change-profileImage">
+											<a href="{{ path('app_change_profile_image', {'id': app.user.id}) }}">
 												<i class="fa fa-sign-out sr-icons"></i>
 												Change Profile Image
-											</a>
-										</button>
-										<button class="btn btn-danger">
-											<a href="/logout">
-												<i class="fa fa-sign-out sr-icons"></i>
-												Logout
 											</a>
 										</button>
 									</div>
@@ -80,25 +74,23 @@
 											{% for post in posts %}
 												<div class="col-lg-4 col-sm-3">
 													<div class="item" style="min-height: 450px" ;>
-														<a href="/posts/<?= $post->getId() ?>"><img style="min-height: 185px; max-height: 185px" src=" <?= $post->getUrlImagenPost() ?>" alt=""></a>
+														<a href="/posts/{{ post.id }}"><img style="min-height: 185px; max-height: 185px" src="{{ asset(post.getUrlImagenPost()) }}" alt="{{ post.titulo }}"></a>
 														<h4 class="col-lg-12">
-															<?= $post->getTitulo() ?><br>
+															{{ post.titulo }}
 														</h4>
 														<p class="col-lg-12">
-															<?= $post->getDescripcion() ?>
+															{{ post.descripcion }}
 														</p>
 														<div class="down-content">
-															<div class="avatar" style="max-width: 30px; margin-top: 15px">
-																<img src=" /public/images/imagenes_perfil/<?= $postsRepository->getCreador($post)->getProfileImage() ?>" alt="" style="max-width: 46px; border-radius: 50%; float: left;">
-															</div>
-															<p style="margin-top: 15px; margin-left: 35px">
-																<?= $postsRepository->getCreador($post)->getUsername() ?>
+														<p class="ms-2 mt-2">
+															<i class="fa fa-user me-1" aria-hidden="true"></i>
+																{{ post.idCreador}}
 																<i class="fa fa-calendar" aria-hidden="true" style="margin-left: 15px"></i>
-																<?= date_format(date_create($post->getFecha()), 'd-m-Y') ?>
+																{{ post.fecha|date('d/m/y', 'Europe/Madrid') }}
 															</p>
 															<p style="margin-top: 10px; margin-left: 5px">
 																<i class="fa fa-gamepad"></i>
-																<?= $postsRepository->getJuego($post)->getNombre() ?>
+																{{ post.idJuego }}
 															</p>
 														</p>
 													</div>

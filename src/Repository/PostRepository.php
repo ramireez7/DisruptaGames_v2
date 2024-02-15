@@ -32,6 +32,19 @@ class PostRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function findPostsDelUsuarioLogueado(string $ordenacion, string $tipoOrdenacion, int $userId)
+    {
+        $qb = $this->createQueryBuilder('post');
+        $qb->addSelect('idCreador', 'idJuego')
+            ->innerJoin('post.idCreador', 'idCreador')
+            ->innerJoin('post.idJuego', 'idJuego')
+            ->andWhere('idCreador.id = :userId')
+            ->setParameter('userId', $userId)
+            ->orderBy('post.' . $ordenacion, $tipoOrdenacion);
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function findPostsConMasLikes()
     {
         $qb = $this->createQueryBuilder('post');

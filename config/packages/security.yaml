@@ -58,6 +58,8 @@ security:
 
         # allow authenticated users only to access to the profile
         - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/users, roles: ROLE_ADMIN }
+        - { path: ^/category, roles: ROLE_ADMIN }
 
         # allow unauthenticated users to access the login form
         - { path: ^/login, roles: PUBLIC_ACCESS }

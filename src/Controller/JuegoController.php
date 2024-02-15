@@ -97,6 +97,28 @@ class JuegoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Manejar la carga de la imagen
+            $imagen = $form['imagen']->getData();
+
+            if ($imagen) {
+                // Generar un nombre único para la imagen
+                $nombreArchivo = md5(uniqid()) . '.' . $imagen->guessExtension();
+
+                // Mover la imagen al directorio de destino
+                try {
+                    $imagen->move(
+                        $this->params->get('images_directory_juegos'),
+                        $nombreArchivo
+                    );
+                } catch (FileException $e) {
+                    // Manejar errores si la carga de la imagen falla
+                }
+
+                // Establecer el nombre de la imagen en el juego
+                $juego->setImagen($nombreArchivo);
+            }
+            
             $entityManager->flush();
 
             return $this->redirectToRoute('app_games', [], Response::HTTP_SEE_OTHER);

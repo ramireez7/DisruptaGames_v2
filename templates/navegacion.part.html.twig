@@ -20,15 +20,6 @@
 								Home</a>
 						</li>
 
-					{% if app.request.pathinfo=='/browse' %}
-						<li class="active lien bg-dark">
-					{% else %}
-							<li class="lien">
-					{% endif %}
-							<a href="{{ path('app_browse') }}">
-								Browse</a>
-						</li>
-
 					{% if app.request.pathinfo=='/games/' %}
 						<li class="active lien bg-dark">
 					{% else %}
@@ -55,6 +46,15 @@
 						{% endif %}
 								<a href="{{ path('app_usuarios') }}">
 										Users
+								</a>
+							</li>
+						{% if app.request.pathinfo=='/category/' %}
+							<li class="active lien bg-dark">
+						{% else %}
+							<li class="lien">
+						{% endif %}
+								<a href="{{ path('app_categoria') }}">
+										Categories
 								</a>
 							</li>
 					{% endif %}

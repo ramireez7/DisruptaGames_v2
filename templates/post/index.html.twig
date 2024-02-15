@@ -31,7 +31,7 @@
 														<div class="hover-effect">
 															<div class="content">
 																<div class="main-button" style="font-size: 1px">
-																	<a href="/games">
+																	<a href="/games/{{post.idJuego}}">
 																		<i class="fa fa-gamepad"></i>
 																		{{ post.idJuego }}
 																	</a>
@@ -66,9 +66,15 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="heading-section">
-									<h4>
+									<h4 class="mb-2">
 										<em style="color:whitesmoke; text-decoration: none">All</em>
 										Posts</h4>
+								</div>
+								<div class="row my-4" style="display: flex">
+									<a class="col-md-2" href="{{ path("app_posts_ordenado", {ordenacion: 'id'}) }}">Order by Id 🔽</a>
+									<a class="col-md-2" href="{{ path("app_posts_ordenado", {ordenacion: 'titulo'}) }}">Order by Title 🔽</a>
+									<a class="col-md-3" href="{{ path("app_posts_ordenado", {ordenacion: 'descripcion'}) }}">Order by Description 🔽</a>
+									<a class="col-md-2" href="{{ path("app_posts_ordenado", {ordenacion: 'idCreador'}) }}">Order by Creator 🔽</a>
 								</div>
 								<div class="row">
 									{% for post in posts %}<br>
@@ -88,7 +94,7 @@
 														<i class="fa fa-calendar me-1	" aria-hidden="true" style="margin-left: 15px"></i>
 														{{ post.fecha|date('d/m/Y H:i', 'Europe/Madrid') }}
 													</p>
-													<p class="ms-2">
+													<p class="text-center">
 														<i class="fa fa-gamepad"></i>
 														{{ post.idJuego}}
 													</p>

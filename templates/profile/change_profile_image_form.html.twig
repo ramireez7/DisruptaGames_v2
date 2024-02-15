@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Change Profile Image
+{% endblock %}
+
+{% block principal %}
+	<div class="row">
+		<div class="container col-lg-6" style="margin-top: 125px">
+			<h1 class="text-center" style="margin-bottom: 25px">Change Profile Image</h1>
+
+			{{ form_start(form) }}
+			<div class="my-custom-class-for-errors">
+				{{ form_errors(form) }}
+			</div>				
+			<div class="row">
+				<div class="col-md-12">
+					{{ form_row(form.profileImage) }}
+				</div>
+			</div>
+			<button class="btn btn-primary mb-3">{{ button_label|default('Save changes') }}</button>
+			<div class="row">
+				<a href="{{ path('app_profile') }}">Go back to profile</a>
+			</div>
+			{{ form_end(form) }}
+		</div>
+
+
+	</div>
+{% endblock %}

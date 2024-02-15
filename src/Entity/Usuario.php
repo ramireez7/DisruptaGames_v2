@@ -144,6 +144,11 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getProfileImageUrl(): string
+    {
+        return self::RUTA_IMAGENES_USUARIOS . $this->getProfileImage();
+    }
+
     public function getNumPosts(): ?int
     {
         return $this->numPosts;
